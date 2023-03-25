@@ -1,13 +1,13 @@
 import {Router} from 'express';
 import {BookRecord} from "../records/book.record";
 
-export const addRouter = Router();
+export const booksRouter = Router();
 
-addRouter
+booksRouter
     .get('/', async (req, res) => {
-        const bookList = await BookRecord.listAll();
+        const booksList = await BookRecord.listAll();
         res.json({
-            bookList,
+            booksList,
         });
     })
 
