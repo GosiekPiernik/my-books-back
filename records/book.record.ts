@@ -4,7 +4,7 @@ import {ValidationError} from "../utils/error";
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
 
-type BookResults = [BookRecord[], FieldPacket[]]
+type BookResults = [BookRecord[], FieldPacket[]];
 
 export class BookRecord implements OneBook {
     id: string;
@@ -23,9 +23,9 @@ export class BookRecord implements OneBook {
         if (!obj.firstAuthor || obj.firstAuthor.length > 100) {
             throw new ValidationError("Uzupełnij imię i nazwisko autora. Możesz użyć 100 znaków")
         }
-        if (obj.publishedDate !== 4) {
-            throw new ValidationError('Wpisz rok wydania')
-        }
+        // if (obj.publishedDate !== 4) {
+        //     throw new ValidationError('Wpisz rok wydania')
+        // }
         if (!obj.type) {
             throw new ValidationError('Wybierz dominujący typ książki')
         }
@@ -43,12 +43,12 @@ export class BookRecord implements OneBook {
         this.opinion = obj.opinion;
     }
 
-    async insert() {
+    async insert(): Promise<string> {
         if (!this.id) {
             this.id = uuid();
         }
 
-        await pool.execute("INSERT INTO `books` VALUES(:id, :title, :firstAuthor, :secondAuthor, :publishedDate, :ISBNNumber, :type, :opinion)", {
+        await pool.execute("INSERT INTO `books` VALUES (:id, :title, :firstAuthor, :secondAuthor, :publishedDate, :ISBNNumber, :type, :opinion)", {
             id: this.id,
             title: this.title,
             firstAuthor: this.firstAuthor,
@@ -62,7 +62,7 @@ export class BookRecord implements OneBook {
     }
 
     static async listAll(): Promise<BookRecord[]> {
-        const [results] = await pool.execute("SELECT * FROM `books`") as BookResults
+        const [results] = await pool.execute("SELECT * FROM `books`") as BookResults;
         return results.map(obj => new BookRecord(obj));
     }
 
