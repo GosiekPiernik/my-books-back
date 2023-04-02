@@ -1,5 +1,5 @@
 export interface OneQuote {
-    id: string,
+    id?: string,
     quote: string,
     author: string,
     book: string
