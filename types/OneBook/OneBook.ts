@@ -1,10 +1,10 @@
 export interface OneBook {
-    id: string,
+    id?: string,
     title: string,
-    firstAuthor: string,
-    secondAuthor?: string,
+    mainAuthor?: string,
     publishedDate: number,
     ISBNNumber: number,
     type: string,
-    opinion: number
+    dateOfReading: Date,
+    opinion: number,
 }
