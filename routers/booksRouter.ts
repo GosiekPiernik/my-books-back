@@ -4,6 +4,7 @@ import {BookRecord} from "../records/book.record";
 export const booksRouter = Router();
 
 booksRouter
+
     .get('/', async (req, res) => {
         const booksList = await BookRecord.listAll();
         res.json({
