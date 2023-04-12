@@ -16,10 +16,10 @@ export class QuoteRecord implements OneQuote {
         if (obj.quote.length > 300) {
             throw new ValidationError('Wpisywany cytat powinien mieć mniej niż 300 znaków')
         }
-            this.id = obj.id;
-            this.quote = obj.quote;
-            this.author = obj.author;
-            this.book = obj.book;
+        this.id = obj.id;
+        this.quote = obj.quote;
+        this.author = obj.author;
+        this.book = obj.book;
     }
 
     async insert(): Promise<string> {

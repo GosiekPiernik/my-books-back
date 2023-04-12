@@ -17,21 +17,19 @@ export class BookRecord implements OneBook {
     opinion: number;
 
     constructor(obj: OneBook) {
-        // if (!obj.title || obj.title.length > 100) {
-        //     throw new ValidationError('Musisz podać tytuł książki. Tytuł powinien zawierać do 100 znaków');
-        // }
-        // if (!obj.firstAuthor || obj.firstAuthor.length > 100) {
-        //     throw new ValidationError("Uzupełnij imię i nazwisko autora. Możesz użyć 100 znaków")
-        // }
-        // // if (obj.publishedDate !== 4) {
-        // //     throw new ValidationError('Wpisz rok wydania')
-        // // }
-        // if (!obj.type) {
-        //     throw new ValidationError('Wybierz dominujący typ książki')
-        // }
-        // if (!obj.opinion) {
-        //     throw new ValidationError('Musisz dokonać oceny przeczytanej książki')
-        // }
+        if (!obj.title || obj.title.length > 100) {
+            throw new ValidationError('Musisz podać tytuł książki. Tytuł powinien zawierać do 100 znaków');
+        }
+        if (!obj.mainAuthor || obj.mainAuthor.length > 100) {
+            throw new ValidationError("Uzupełnij imię i nazwisko autora. Możesz użyć 100 znaków")
+        }
+
+        if (!obj.type) {
+            throw new ValidationError('Wybierz dominujący typ książki')
+        }
+        if (!obj.opinion) {
+            throw new ValidationError('Musisz dokonać oceny przeczytanej książki')
+        }
 
         this.id = obj.id;
         this.title = obj.title;
